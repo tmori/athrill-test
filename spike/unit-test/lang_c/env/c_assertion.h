@@ -13,4 +13,9 @@ do {	\
 	}	\
 } while (0)
 
+#define C_TEST_START()	\
+do {	\
+    test_print(__FUNCTION__);test_print("():\n");	\
+} while (0)
+
 #endif /* _C_ASSERTION_H_ */
