@@ -59,7 +59,7 @@ void do_c_unit_athrithmetic_test(void)
     do_c_unit_athrithmetic_test_add_min_minus_1();
     do_c_unit_athrithmetic_test_add_min();
     do_c_unit_athrithmetic_test_add_min_plus_1();
-    do_c_unit_athrithmetic_test_add_max_plus_1();
+    do_c_unit_athrithmetic_test_add_max_minus_1();
     do_c_unit_athrithmetic_test_add_max();
     do_c_unit_athrithmetic_test_add_max_plus_1();
     return;
