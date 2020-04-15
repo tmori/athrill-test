@@ -1,1 +1,0 @@
-[DONE> core0 pc=0x0 null(null) LDR imm32(16) add(1) PC(R15[8 0x8]) Rt(R0[0 0x0]) : Rt(R0[536870912 0x20000000]) CPSR(0x13)  
