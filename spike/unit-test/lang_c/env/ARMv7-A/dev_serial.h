@@ -2,7 +2,7 @@
 #define _DEV_SERIAL_H_
 
 
-#define SERIAL_OUT_ADDR		((volatile unsigned char*)0xFFFFFA07)
+#define SERIAL_OUT_ADDR		((volatile unsigned char*)0xE800800C)
 
 static inline void test_print(const char *str)
 {

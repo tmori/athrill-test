@@ -3,7 +3,7 @@
 
 #include "dev_serial.h"
 
-#define ASSERT(expr)	\
+#define C_ASSERT(expr)	\
 do {	\
 	if (expr) {	\
 		test_print_line("PASSED <" #expr "> " __FILE__ ":", __LINE__);	\
