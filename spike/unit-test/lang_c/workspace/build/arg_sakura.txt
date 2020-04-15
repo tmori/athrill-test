@@ -1,0 +1,2 @@
+-l 28 ../../env/ARMv7-A/startup/main.c
+

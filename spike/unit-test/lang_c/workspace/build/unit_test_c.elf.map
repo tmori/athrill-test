@@ -1,0 +1,168 @@
+
+Allocating common symbols
+Common symbol       size              file
+
+stack_data          0x80              main.o
+
+Discarded input sections
+
+ .data          0x0000000000000000        0x0 start.o
+ .bss           0x0000000000000000        0x0 start.o
+ .data          0x0000000000000000        0x0 main.o
+ .bss           0x0000000000000000        0x0 main.o
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+TCML             0x0000000000000000 0x0000000000100000 xrw
+TCMU             0x0000000020000000 0x0000000000100000 xrw
+OCRAM_L          0x0000000000900000 0x0000000000020000 xrw
+OCRAM_U          0x0000000020900000 0x0000000000020000 xrw
+*default*        0x0000000000000000 0xffffffffffffffff
+
+Linker script and memory map
+
+LOAD /usr/lib/arm-none-eabi/newlib/fpu/libm.a
+LOAD /usr/lib/arm-none-eabi/newlib/fpu/libc.a
+LOAD /usr/lib/gcc/arm-none-eabi/4.9.3/fpu/libgcc.a
+LOAD /usr/lib/arm-none-eabi/newlib/fpu/libnosys.a
+LOAD start.o
+LOAD main.o
+LOAD /usr/lib/arm-none-eabi/newlib/fpu/libc.a
+LOAD /usr/lib/gcc/arm-none-eabi/4.9.3/fpu/libgcc.a
+LOAD /usr/lib/arm-none-eabi/newlib/fpu/libnosys.a
+START GROUP
+LOAD /usr/lib/gcc/arm-none-eabi/4.9.3/fpu/libgcc.a
+LOAD /usr/lib/arm-none-eabi/newlib/fpu/libg.a
+LOAD /usr/lib/arm-none-eabi/newlib/fpu/libc.a
+END GROUP
+                [!provide]                        PROVIDE (hardware_init_hook, 0x0)
+                [!provide]                        PROVIDE (software_init_hook, 0x0)
+                [!provide]                        PROVIDE (software_term_hook, 0x0)
+
+.text           0x0000000000000000      0x100
+                0x0000000000000000                __text = .
+ *(.vector)
+ *(.text)
+ .text          0x0000000000000000       0x1c start.o
+                0x0000000000000000                _start
+ .text          0x000000000000001c       0xe4 main.o
+                0x000000000000001c                main
+                0x0000000000000028                bss_clear
+                0x0000000000000088                data_init
+ *(.text.*)
+                0x0000000000000100                _etext = .
+                [!provide]                        PROVIDE (etext, .)
+
+.glue_7         0x0000000000000100        0x0
+ .glue_7        0x0000000000000100        0x0 linker stubs
+
+.glue_7t        0x0000000000000100        0x0
+ .glue_7t       0x0000000000000100        0x0 linker stubs
+
+.vfp11_veneer   0x0000000000000100        0x0
+ .vfp11_veneer  0x0000000000000100        0x0 linker stubs
+
+.v4_bx          0x0000000000000100        0x0
+ .v4_bx         0x0000000000000100        0x0 linker stubs
+
+.iplt           0x0000000000000100        0x0
+ .iplt          0x0000000000000100        0x0 start.o
+
+.rel.dyn        0x0000000000000100        0x0
+ .rel.iplt      0x0000000000000100        0x0 start.o
+
+.rodata
+ *(.rodata)
+ *(.rodata.*)
+
+.ARM.extab
+ *(.ARM.extab* .gnu.linkonce.armextab.*)
+                0x0000000000000100                __exidx_start = .
+
+.ARM.exidx
+ *(.ARM.exidx* .gnu.linkonce.armexidx.*)
+                0x0000000000000100                __exidx_end = .
+                0x0000000000000100                idata_start = .
+
+.data           0x0000000020000000        0x0 load address 0x0000000000000100
+                0x0000000020000000                data_start = .
+ *(.data)
+ *(.data.*)
+                0x0000000020000000                idata_end = .
+                0x0000000020000000                _edata = .
+                [!provide]                        PROVIDE (edata, .)
+
+.igot.plt       0x0000000020000000        0x0 load address 0x0000000000000100
+ .igot.plt      0x0000000020000000        0x0 start.o
+                0x0000000020000000                . = ALIGN (0x4)
+
+.bss            0x0000000020000000       0x80 load address 0x0000000000000100
+                0x0000000020000000                bss_start = .
+ *(.bss)
+ *(COMMON)
+ COMMON         0x0000000020000000       0x80 main.o
+                0x0000000020000000                stack_data
+                0x0000000020000080                . = ALIGN (0x4)
+                0x0000000020000080                . = ALIGN (0x4)
+                0x0000000020000080                _end = .
+                0x0000000020000080                bss_end = .
+                [!provide]                        PROVIDE (end, .)
+OUTPUT(unit_test_c.elf elf32-littlearm)
+
+.ARM.attributes
+                0x0000000000000000       0x3b
+ .ARM.attributes
+                0x0000000000000000       0x2b start.o
+ .ARM.attributes
+                0x000000000000002b       0x3f main.o
+
+.comment        0x0000000000000000       0x38
+ .comment       0x0000000000000000       0x38 main.o
+                                         0x39 (size before relaxing)
+
+.debug_line     0x0000000000000000       0xdc
+ .debug_line    0x0000000000000000       0x59 start.o
+ .debug_line    0x0000000000000059       0x83 main.o
+
+.debug_info     0x0000000000000000      0x1c5
+ .debug_info    0x0000000000000000       0x8f start.o
+ .debug_info    0x000000000000008f      0x136 main.o
+
+.debug_abbrev   0x0000000000000000       0xcd
+ .debug_abbrev  0x0000000000000000       0x14 start.o
+ .debug_abbrev  0x0000000000000014       0xb9 main.o
+
+.debug_aranges  0x0000000000000000       0x40
+ .debug_aranges
+                0x0000000000000000       0x20 start.o
+ .debug_aranges
+                0x0000000000000020       0x20 main.o
+
+.debug_loc      0x0000000000000000       0xb4
+ .debug_loc     0x0000000000000000       0xb4 main.o
+
+.debug_str      0x0000000000000000      0x169
+ .debug_str     0x0000000000000000      0x169 main.o
+                                        0x174 (size before relaxing)
+
+.debug_frame    0x0000000000000000       0x68
+ .debug_frame   0x0000000000000000       0x68 main.o
+
+Cross Reference Table
+
+Symbol                                            File
+_start                                            start.o
+bss_clear                                         main.o
+                                                  start.o
+bss_end                                           main.o
+bss_start                                         main.o
+data_init                                         main.o
+                                                  start.o
+data_start                                        main.o
+idata_end                                         main.o
+idata_start                                       main.o
+main                                              main.o
+                                                  start.o
+stack_data                                        main.o
+                                                  start.o

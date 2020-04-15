@@ -1,0 +1,77 @@
+
+unit_test_c.elf:     file format elf32-littlearm
+
+
+Disassembly of section .text:
+
+00000000 <__text>:
+   0:	e59f0010 	ldr	r0, [pc, #16]	; 18 <__text+0x18>
+   4:	e2800080 	add	r0, r0, #128	; 0x80
+   8:	e1a0d000 	mov	sp, r0
+   c:	eb000005 	bl	28 <bss_clear>
+  10:	eb00001c 	bl	88 <data_init>
+  14:	ea000000 	b	1c <main>
+  18:	20000000 	.word	0x20000000
+
+0000001c <main>:
+  1c:	e52db004 	push	{fp}		; (str fp, [sp, #-4]!)
+  20:	e28db000 	add	fp, sp, #0
+  24:	eafffffe 	b	24 <main+0x8>
+
+00000028 <bss_clear>:
+  28:	e52db004 	push	{fp}		; (str fp, [sp, #-4]!)
+  2c:	e28db000 	add	fp, sp, #0
+  30:	e24dd00c 	sub	sp, sp, #12
+  34:	e3003000 	movw	r3, #0
+  38:	e3423000 	movt	r3, #8192	; 0x2000
+  3c:	e50b3008 	str	r3, [fp, #-8]
+  40:	e3003080 	movw	r3, #128	; 0x80
+  44:	e3423000 	movt	r3, #8192	; 0x2000
+  48:	e50b300c 	str	r3, [fp, #-12]
+  4c:	ea000005 	b	68 <bss_clear+0x40>
+  50:	e51b3008 	ldr	r3, [fp, #-8]
+  54:	e3a02000 	mov	r2, #0
+  58:	e5c32000 	strb	r2, [r3]
+  5c:	e51b3008 	ldr	r3, [fp, #-8]
+  60:	e2833001 	add	r3, r3, #1
+  64:	e50b3008 	str	r3, [fp, #-8]
+  68:	e51b2008 	ldr	r2, [fp, #-8]
+  6c:	e51b300c 	ldr	r3, [fp, #-12]
+  70:	e1520003 	cmp	r2, r3
+  74:	3afffff5 	bcc	50 <bss_clear+0x28>
+  78:	e1a00000 	nop			; (mov r0, r0)
+  7c:	e24bd000 	sub	sp, fp, #0
+  80:	e49db004 	pop	{fp}		; (ldr fp, [sp], #4)
+  84:	e12fff1e 	bx	lr
+
+00000088 <data_init>:
+  88:	e52db004 	push	{fp}		; (str fp, [sp, #-4]!)
+  8c:	e28db000 	add	fp, sp, #0
+  90:	e24dd014 	sub	sp, sp, #20
+  94:	e3003100 	movw	r3, #256	; 0x100
+  98:	e3403000 	movt	r3, #0
+  9c:	e50b3008 	str	r3, [fp, #-8]
+  a0:	e3003000 	movw	r3, #0
+  a4:	e3423000 	movt	r3, #8192	; 0x2000
+  a8:	e50b3010 	str	r3, [fp, #-16]
+  ac:	e3003000 	movw	r3, #0
+  b0:	e3423000 	movt	r3, #8192	; 0x2000
+  b4:	e50b300c 	str	r3, [fp, #-12]
+  b8:	ea000009 	b	e4 <data_init+0x5c>
+  bc:	e51b3008 	ldr	r3, [fp, #-8]
+  c0:	e5d32000 	ldrb	r2, [r3]
+  c4:	e51b300c 	ldr	r3, [fp, #-12]
+  c8:	e5c32000 	strb	r2, [r3]
+  cc:	e51b300c 	ldr	r3, [fp, #-12]
+  d0:	e2833001 	add	r3, r3, #1
+  d4:	e50b300c 	str	r3, [fp, #-12]
+  d8:	e51b3008 	ldr	r3, [fp, #-8]
+  dc:	e2833001 	add	r3, r3, #1
+  e0:	e50b3008 	str	r3, [fp, #-8]
+  e4:	e51b2008 	ldr	r2, [fp, #-8]
+  e8:	e51b3010 	ldr	r3, [fp, #-16]
+  ec:	e1520003 	cmp	r2, r3
+  f0:	3afffff1 	bcc	bc <data_init+0x34>
+  f4:	e24bd000 	sub	sp, fp, #0
+  f8:	e49db004 	pop	{fp}		; (ldr fp, [sp], #4)
+  fc:	e12fff1e 	bx	lr
