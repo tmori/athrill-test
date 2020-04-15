@@ -3,7 +3,7 @@
 #include "c-primitive-ops/arithmetic/c_primitive_ops_arithmetic.h"
 #include "c_assertion.h"
 
-void do_test(void)
+void do_c_unit_athrithmetic_test(void)
 {
     int result;
     int op1;
