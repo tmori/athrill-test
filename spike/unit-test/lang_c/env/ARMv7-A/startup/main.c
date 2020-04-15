@@ -24,11 +24,11 @@ extern void data_init(void);
 #define STACK_SIZE	128
 unsigned char stack_data[STACK_SIZE];
 
-extern void do_test(void);
+extern void do_c_unit_test(void);
 
 int main(void)
 {
-	do_test();
+	do_c_unit_test();
 	while (1) {
 	}
 	return 0;
